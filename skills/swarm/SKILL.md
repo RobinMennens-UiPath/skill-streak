@@ -14,7 +14,7 @@ relevant checks. Give the swarm the updated implementation; do not defer known
 fixes until reviews return. If the user wants to discard the implementation
 and explore new ideas, skip fixes to code being replaced.
 
-Use the user's saved `swarm:` line in `~/.config/bstack/preferences.md` when the request leaves reviewers unspecified. Reviewers named for one run override that lineup for that run only. If neither gives the members, ask which reviewers to use. The user can change their default with [setup](../bmode-setup/SKILL.md). Use the [settings](../bmode-setup/references/defaults.md) for effort, target, cap and usage floor. Without that file, use high effort for plans, medium for code, a target of 10, eight rounds and a 5% floor on each usage limit.
+Use the user's saved `swarm:` line in `~/.config/skill-streak/preferences.md` when the request leaves reviewers unspecified. Reviewers named for one run override that lineup for that run only. If neither gives the members, ask which reviewers to use. The user can change their default with [setup](../do-work-setup/SKILL.md). Use the [settings](../do-work-setup/references/defaults.md) for effort, target, cap and usage floor. Without that file, use high effort for plans, medium for code, a target of 10, eight rounds and a 5% floor on each usage limit.
 
 Use `orchestrator_capabilities` to resolve named models and effort options. If a member is unavailable, report it and wait. Announce members, effort and cap in one line.
 
@@ -26,9 +26,9 @@ Put the brief and one report per member or code area per round in the plan folde
 
 ## Run a round
 
-Before launching reviewers, check each selected provider account using the [provider usage procedure](../bmode-setup/references/defaults.md#provider-usage). If setup is absent, use the matching provider’s live usage report and the standalone floor above.
+Before launching reviewers, check each selected provider account using the [provider usage procedure](../do-work-setup/references/defaults.md#provider-usage). If setup is absent, use the matching provider’s live usage report and the standalone floor above.
 
-Use `delegate_task` with shared isolation, the resolved member's `target.providerInstanceId` and `target.model`, and the provider effort option in `target.options`. Launch fresh read-only reviewers in parallel. Begin each task with `Read <absolute path>/delegates.md before anything else.` Use the [delegate rules](../bmode-setup/references/delegates.md). If unavailable, include the rules in the task: work alone within scope, verify claims against files, write only the assigned report, run read-only git, post nothing and finish with `REPORT <path>`.
+Use `delegate_task` with shared isolation, the resolved member's `target.providerInstanceId` and `target.model`, and the provider effort option in `target.options`. Launch fresh read-only reviewers in parallel. Begin each task with `Read <absolute path>/delegates.md before anything else.` Use the [delegate rules](../do-work-setup/references/delegates.md). If unavailable, include the rules in the task: work alone within scope, verify claims against files, write only the assigned report, run read-only git, post nothing and finish with `REPORT <path>`.
 
 Do not wait idle. When a result arrives, check its findings against the code
 at once and decide what to fix while the other delegates run. Do not edit

@@ -20,7 +20,7 @@ Assign one reviewer per area, two to five areas. Give the areas to the configure
 
 Round one: review the assigned area. Later rounds: read only the changes since the preceding review. Use the updated heads and diff file below.
 
-10 means no finding. Report only a defect with the input or state and the wrong result, or a violation of a written repository rule. Cite `path:line`. Exclude style preferences and keep design decisions closed.
+10 means no finding. Report only a defect with the input or state and the wrong result, a violation of a written repository rule, or a break of the readable-code checks in coding best practices: descriptive names, early returns, named constants instead of magic values, no swallowed exceptions, comments that explain why. For a refactor, read the pre-change file with `git show <base>:<path>` and report any dropped case. Cite `path:line`. Exclude other style preferences and keep design decisions closed.
 
 ## Since round <N>
 

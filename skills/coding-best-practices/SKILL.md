@@ -1,6 +1,6 @@
 ---
 name: coding-best-practices
-description: Implement or review code through a verified result. Keep changes small and TypeScript readable.
+description: Implement or review code through a verified result. Keep changes small and code readable.
 disable-model-invocation: true
 license: MIT
 compatibility: "Requires access to the code under review."
@@ -22,14 +22,18 @@ Implement the simplest solution that satisfies the request. Follow the repositor
 
 A bug fix should address the cause. Reproduce the failure when possible, trace it, and check that the fix changes the observed behavior. Do not hide failures with fallback values or guards that make the symptom disappear.
 
-## Write readable TypeScript
+## Write readable code
 
-- Use named functions, clear values, and early returns. Prefer `const`; return a computed value instead of declaring a variable and assigning it across branches.
-- Let a `switch` return the result or handler for each case. Use a lookup object for fixed data mappings.
-- Use loops when they make a transformation easier to follow. Avoid dense chains and nested ternaries; do not turn a simple expression into a framework.
-- Parse external data at input boundaries with the project's schema tools. Trust validated internal types. Do not scatter generic record guards through business logic.
-- Model distinct states with types. Do not use casts, non-null assertions, or `any` to conceal missing validation.
-- Keep inputs unchanged unless mutation is part of the function's contract. Keep mutable state local and small.
+These are also the checks a review applies to every change.
+
+- Use descriptive names, even long ones, over abbreviations that need explaining.
+- Use early returns instead of if/else. Prefer `const`; return a computed value instead of assigning a variable across branches.
+- Put magic values in named constants. Tests may use literals.
+- Catch an exception only when you can do something meaningful with it. Never swallow one.
+- Write comments only for why the code is this way, or for facts the code cannot show. Delete comments that repeat the code.
+- Let a `switch` return the result for each case. Use a lookup object for fixed data mappings.
+- Use loops when they make a transformation easier to follow. Avoid dense chains and nested ternaries.
+- For types, parsing at boundaries and casts, follow [type system](../type-system/SKILL.md).
 
 ## Finish the job
 
@@ -37,8 +41,6 @@ Choose checks that could expose a wrong result. Run the changed behavior and the
 
 Investigate failures caused by the change, fix them, and rerun affected checks. If an approach keeps failing, revisit the cause instead of repeating it. For a blocker outside your control, finish the work you can and report the evidence and the specific missing input or access.
 
-For implementation tasks in a repository that uses PRs, deliver a draft PR and tell the user it is ready for their comments. While it is a draft, follow comments attributable to the requesting user, fix, verify and push the changes, then give the user a verdict and a draft reply. Post or resolve only when the user asks for that action. Present other reviewers' feedback with a recommendation. Once the user marks the PR ready, explain all new feedback and wait for their decision before making review changes or resolving threads. Recheck the PR state before publishing a fix.
-
-Inspect the host's PR event tools and use an existing subscription or register one for the PR. Confirm it is active. Prefer subscriptions or listeners; poll only when event delivery is unavailable. Check the available tools before reporting a monitoring limitation, and preserve enough context to avoid repeating completed work.
+For implementation tasks in a repository that uses PRs, open and watch the PR with [open-pr](../open-pr/SKILL.md).
 
 Continue through the delivery steps the user authorized. Merge, deployment, and messages require authority from the request or an applicable project policy. Do not ask for permission already given. Report the result, how you checked it, and any remaining limitation.
