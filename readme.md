@@ -1,50 +1,48 @@
-# bStack
+# skill-streak
 
-[![skills.sh](https://img.shields.io/badge/skills.sh-bStack-black)](https://skills.sh/0xr3ngar/bstack)
+My agent skills for day-to-day coding work in T3 Code: plan, build, review and ship a change, and review other people's PRs.
 
-[Why bStack?](docs/why-bstack.md) · [Contributing](CONTRIBUTING.md) · [Releases](docs/releases.md) · [MIT license](LICENSE) · [Third-party notices](THIRD_PARTY_NOTICES.md)
-
-<img align="right" width="24%" src="docs/assets/bmode.png" alt="Smiling handheld console wearing a headset" />
-
-Start a T3 Code thread with `/bmode`, describe the feature, and go do something else. Seriously, you can leave the tab. If you spend the next twenty minutes watching an agent type, I’ve built you a very elaborate loading screen.
-
-The idea is that the agents can wait on you. The lead coordinates a swarm to plan, build, test, and review the change. You come back to a verified draft PR or a specific question that needs your input.
-
-Want to read the plan first? Add “show me the plan before you build” to your request. The lead waits for your go-ahead before starting `/full-send`.
-
-You can also give it a PR to review. It leads with a verdict, shows the code behind each finding and lets you choose which comments to post.
-
-Run `/bmode-setup` to choose models and the reviewers a plain `/swarm` uses across repositories. Setup also looks for repeated corrections in your project history and asks which changes to write into your own bStack skills. You can name different reviewers for a single run.
-
-Please steal this setup. Fork bStack, keep the skills you like, and rewrite the ones that annoy you. Your agents can learn your bad habits instead of mine.
+Forked from [bStack](https://github.com/0xr3ngar/bstack) by 0xr3ngar at version 1.3.1. I renamed the workflow skills, dropped the parts I don't use, and folded in my own review and comment-cleanup habits. Credits for bStack and the work it built on are in [third-party notices](THIRD_PARTY_NOTICES.md).
 
 ## Install
 
 ```bash
-bunx --bun skills add 0xr3ngar/bstack
+bunx --bun skills add RobinMennens-UiPath/skill-streak --global
 ```
 
-Or use `npx skills add 0xr3ngar/bstack`. Choose the skills and agent when prompted. Add `--global` to install across projects, or `--skill unslop` to pick one skill.
+Then run `/do-work-setup` to choose models and the reviewers a plain `/swarm` uses.
+
+PR reviews use the `pr-review` skill from the `divide-and-conquer-pr-review` plugin in the UiPath Claude marketplace. Install it too, or the review route falls back to a manual review.
 
 ## Skills
 
 | Skill | What it does |
 | --- | --- |
-| [bmode](skills/bmode/SKILL.md) | Route each request. For a feature, plan, build, verify and return draft PRs in the same conversation. |
-| [bmode-setup](skills/bmode-setup/SKILL.md) | Choose models and reviewers, then tune your bStack skill files from past conversations and your answers. |
-| [skill-retro](skills/skill-retro/SKILL.md) | Review the project's full T3 Code, Claude Code, Cursor, and Codex history for recurring corrections and update the bStack skills behind them. |
-| [swarm](skills/swarm/SKILL.md) | Review a plan, code change or open question in rounds. |
-| [full-send](skills/full-send/SKILL.md) | Build an internally reviewed feature plan and return draft PRs and proof to the originating thread. |
-| [yeet](skills/yeet/SKILL.md) | Open a draft PR and work through your review comments. |
-| [why](skills/why/SKILL.md) | Trace a decision through its history. |
-| [coding-best-practices](skills/coding-best-practices/SKILL.md) | Deliver verified changes with small diffs and readable TypeScript. |
-| [user-first](skills/user-first/SKILL.md) | Design from the user’s side of a change. |
+| [do-work](skills/do-work/SKILL.md) | Start here. Routes a feature, bug, small change, PR review, question, audit or writing task to its playbook. |
+| [do-work-setup](skills/do-work-setup/SKILL.md) | Choose models and swarm reviewers, then tune these skills from past conversations. |
+| [build-plan](skills/build-plan/SKILL.md) | Build a reviewed feature plan into draft PRs, with proof on the real app. |
+| [open-pr](skills/open-pr/SKILL.md) | Open a draft PR, then watch it and handle comments, reviews and failing checks as they arrive. |
+| [swarm](skills/swarm/SKILL.md) | Review a plan, code change or open question in rounds with several models. |
+| [skill-retro](skills/skill-retro/SKILL.md) | Find corrections you keep repeating in your agent history and update the skills behind them. |
+| [fix-comments](skills/fix-comments/SKILL.md) | Cut comments and doc text that repeat the code. |
+| [why](skills/why/SKILL.md) | Trace a decision through commits, PRs, tickets and old threads. |
+| [coding-best-practices](skills/coding-best-practices/SKILL.md) | Small, verified changes and readable code. |
+| [user-first](skills/user-first/SKILL.md) | Design from the user's side of a change. |
 | [exhaust-the-design-space](skills/exhaust-the-design-space/SKILL.md) | Compare concrete designs before choosing one. |
 | [foundational-thinking](skills/foundational-thinking/SKILL.md) | Define data and contracts before writing logic. |
 | [root-cause-fix](skills/root-cause-fix/SKILL.md) | Trace a failure to its first wrong decision. |
 | [redesign-from-first-principles](skills/redesign-from-first-principles/SKILL.md) | Migrate every caller of a redesigned contract. |
 | [type-system](skills/type-system/SKILL.md) | Represent valid states in types. |
-| [unslop](skills/unslop/SKILL.md) | Cut filler and template language from prose. |
+| [unslop](skills/unslop/SKILL.md) | Cut AI tells from any writing. |
 | [bro](skills/bro/SKILL.md) | Restate the last response in plain language. |
-| [presentation](skills/presentation/SKILL.md) | Build a slide deck with hand-drawn diagrams and Clawd, by default about your last two weeks. |
 | [time-report](skills/time-report/SKILL.md) | Estimate time spent on tickets from agent conversation history. |
+
+## Develop
+
+Needs Bun 1.4 or newer. See [AGENTS.md](AGENTS.md) for the skill conventions.
+
+```bash
+bun install --frozen-lockfile
+bun run check
+bun run check:install
+```

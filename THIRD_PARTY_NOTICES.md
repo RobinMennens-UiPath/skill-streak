@@ -1,5 +1,11 @@
 # Third-party notices
 
+## bStack
+
+This repository is a fork of [bStack](https://github.com/0xr3ngar/bstack) by [0xr3ngar](https://github.com/0xr3ngar), MIT licensed. Its copyright notice is kept in [LICENSE](LICENSE). The notices below came with bStack and still apply to the material it adapted.
+
+## pstack
+
 Some bstack skills adapt material from [pstack](https://github.com/cursor/plugins/tree/main/pstack) by [Lauren Tan](https://github.com/poteto).
 
 The upstream license is reproduced below. It applies to the pstack material retained in this repository. Changes made for bstack use the [repository license](LICENSE).
