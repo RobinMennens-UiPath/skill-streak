@@ -6,6 +6,7 @@ Use the request first, then `~/.config/skill-streak/preferences.md`, then these 
 harness: T3 Code, MCP server t3-code
 orchestrator: Fable 5.2, high
 implementer: Opus 5.5, high
+pr reviewer: Fable 5.2, high, never a model that wrote code for the PR
 swarm: the members selected during setup
 swarm effort: high for a plan, medium for code
 researchers: Opus 5.5, medium, at most 3 at a time
@@ -26,7 +27,7 @@ pull requests: draft, few and large, a native stack with gh stack when one build
 
 ## Provider usage
 
-At feature preflight, list the model and actual provider account selected for each role (lead, researchers, builders and swarm members), including request overrides. Check all assigned accounts. Before launching a batch or review round, refresh the accounts it will use. Route by the provider serving the model: a Claude model served by Cursor consumes Cursor usage. Read each shared account once per check and include any limits specific to its selected models.
+At feature preflight, list the model and actual provider account selected for each role (lead, researchers, builders, PR reviewer and swarm members), including request overrides. Check all assigned accounts. Before launching a batch or review round, refresh the accounts it will use. Route by the provider serving the model: a Claude model served by Cursor consumes Cursor usage. Read each shared account once per check and include any limits specific to its selected models.
 
 | Provider | How to read the active account’s allowance |
 | --- | --- |
