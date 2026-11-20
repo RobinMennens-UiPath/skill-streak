@@ -17,7 +17,7 @@ For full setup, use [skill-retro](../skill-retro/SKILL.md) in analysis-only mode
 
 1. Which model should orchestrate features? Suggest Fable 5.2 at high effort.
 2. Which model should implement changes? Suggest Opus 5.5 at high effort.
-3. Which model should run `pr-review` on our own changes before a PR opens? Suggest Fable 5.2 at high effort. It must differ from the implementer, and its provider needs the divide-and-conquer-pr-review plugin.
+3. Which model should run `pr-review` on our own changes before a PR opens? Suggest Fable 5.2 at high effort. It must differ from the implementer.
 4. Which reviewers should a plain `/swarm` use by default? Show the user's saved lineup first and let them keep it. They can combine any [provider presets](references/defaults.md#swarm-presets), choose **All recommended** across all three, or pick individual models. Show **Claude Code + Cursor** and **Claude Code + Codex** as shortcuts when available. Expand each choice into its available reviewers, flag any missing models, and let the user add or remove members before saving. A lineup needs at least two models.
 5. Which other settings should change? Show each current value. Build mode accepts `threads` or `inline`.
 6. Which skill behaviors should change or stay as they are? For each recurring correction, show the decision it affected, the skill file and the proposed wording. Let the user accept, revise, skip, or add a preference from their own experience.
