@@ -1,6 +1,6 @@
 ---
 name: pr-review
-description: Reviews a pull request, or a local branch that has no PR yet, against a list of expectations supplied up front. Use when a user or another agent asks for an expectations-driven review of a change. Chunks those expectations across focused review agents, then proposes PR comments for the reviewer to approve before submitting them with gh.
+description: Reviews a pull request, or a local branch that has no PR yet, against a list of expectations supplied up front. Use when a user or another agent asks for an expectations-driven review of a change. Chunks those expectations across focused review agents, then proposes PR comments for the reviewer to approve before submitting them with gh, then keeps watching the PR for replies and new commits.
 license: MIT
 compatibility: "Requires Git and an authenticated GitHub CLI. Jira, Confluence, Slack and SharePoint access are used when the PR links to them."
 ---
@@ -71,3 +71,12 @@ Use the `gh` cli to actually submit the comments as the reviewer.
 If actual changes are required, submit as 'request changes'.
 Prefer in-line comments, but note that GitHub only allows an inline comment on a line that is part of the diff (inside a hunk). Findings on unchanged lines cannot be inlined — put those in the review summary body instead. Check the hunk ranges before deciding where each comment can go.
 ONLY submit a review summary if you actually have a comment you cannot submit in-line.
+
+*Phase 5*: Keep watching the PR
+Only when there is a PR, and only when you report to the human reviewer. A calling agent's review stops after Phase 3.
+After submitting, or when the reviewer approves no comments, keep watching the PR until it merges or closes, or the reviewer says stop. In T3 Code, call `watch_pull_request`: replies, new reviews, pushes and check results then wake you. Elsewhere, poll with bounded waits. Release the watch with `unwatch_pull_request` at the end.
+When an event arrives, read the whole thread and the code it points at:
+- A reply to one of your comments: say whether it settles the point, and propose a reply or resolving the thread.
+- New commits: check whether they address your open comments, and review the new diff against the same expectations, running Phase 2 on it when it is large.
+- A new review or comment from someone else, or a failing check: summarize it and say whether it changes your verdict.
+Report each batch to the reviewer in a line or two, with links. Post replies, resolve threads, approve or request changes only after the reviewer approves that action, as in Phase 3.
