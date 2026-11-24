@@ -1,6 +1,6 @@
 ---
 name: open-pr
-description: Open a draft PR, then watch it and handle new comments, reviews and failing checks as they arrive. Trigger on "open a PR" or "yeet".
+description: Open a draft PR, then watch it and handle new comments, reviews and failing checks as they arrive. Use whenever you open a PR, inside another skill or on its own, and on "open a PR" or "yeet".
 disable-model-invocation: true
 license: MIT
 compatibility: "Requires Git, an authenticated GitHub CLI, and repository push access. The PR diagram needs GitHub CLI 2.102 or newer for image attachments, headless Chrome or another browser screenshot tool, and internet access."
@@ -84,7 +84,8 @@ When an event arrives, read the whole thread and the code it points at, then han
 
 - **The user or a review bot such as Copilot.** Fix what is valid, run the affected checks and push. Reply in the thread with what changed, or why you left the code as it is, and resolve the thread.
 - **Another person.** Fix what is clearly valid and within scope, push, and reply with what changed. Leave resolving to that reviewer. For a disputed point, a design change or work outside scope, give the user a verdict and a draft reply and wait for their decision.
-- **A failing check.** Reproduce it and check whether the base also fails. Fix failures this change caused and push. Report the others.
+- **A question or a comment that needs no change.** Answer it in the thread, or say why the code stays as it is. Resolve it only under the rules above.
+- **A failing check.** Read its log, with `ci_logs` in T3 Code or `gh run view --log-failed`. Reproduce it locally when you can and check whether the base also fails. Fix what this change caused, including tests, types, lint and build or workflow config, then push and watch the new run. For a failure that looks flaky or infrastructural, rerun it once with `ci_rerun` or `gh run rerun --failed`. Report a failure the base also has, or one that needs secrets, access or a decision, with the log lines that show it.
 
 After each batch, tell the user in a line or two what came in and what you did, with links to the threads. Fetch the comments that arrived while you were fixing before you report.
 
