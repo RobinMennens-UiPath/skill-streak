@@ -22,7 +22,7 @@ Then run `/do-work-setup` to choose models and the reviewers a plain `/swarm` us
 | [open-pr](skills/open-pr/SKILL.md) | Open a draft PR, then watch it and handle comments, reviews and failing checks as they arrive. |
 | [swarm](skills/swarm/SKILL.md) | Review a plan, code change or open question in rounds with several models. |
 | [skill-retro](skills/skill-retro/SKILL.md) | Find corrections you keep repeating in your agent history and update the skills behind them. |
-| [pr-review](skills/pr-review/SKILL.md) | Review a PR or local branch against a list of expectations, split across focused review agents. Proposes comments for you to approve. |
+| [pr-review](skills/pr-review/SKILL.md) | Review a PR or local branch against a list of expectations, split across focused review agents. Proposes comments for you to approve, then watches the PR for replies and new commits. |
 | [fix-comments](skills/fix-comments/SKILL.md) | Cut comments and doc text that repeat the code. |
 | [why](skills/why/SKILL.md) | Trace a decision through commits, PRs, tickets and old threads. |
 | [coding-best-practices](skills/coding-best-practices/SKILL.md) | Small, verified changes and readable code. |
