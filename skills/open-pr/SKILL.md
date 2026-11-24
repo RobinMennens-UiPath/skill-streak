@@ -24,6 +24,8 @@ After the subject, use Linux-style git trailers only. Add `Assisted-by: Vendor:m
 
 Find the branch's existing PR before creating one. Open new PRs in draft and preserve an existing PR's status. The user decides when to mark it ready. Follow an explicit request for a different status.
 
+Assign a new PR to the requesting user: `gh pr create --assignee <login>`. Find the login as “Watch the PR” describes.
+
 Match the title to the main commit subject. Then write the description as described below.
 
 ## Write the description
