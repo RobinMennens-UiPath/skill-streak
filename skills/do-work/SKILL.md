@@ -44,6 +44,7 @@ Follow an explicit `Route:` line. Route `/do-work <slug>` for an existing plan f
 
 6. Use native stacks for dependent PRs. Use `gh stack` to create and restack them when installed. For an authorized merge, use its merge operation if available.
 7. Stop a bug fix that needs a behavior choice or design and present the options. Move a change that needs design to feature and say so. A started thread stops and reports instead.
+8. When a feature, bug or change route picks up a Jira ticket, update the ticket before the work starts. The thread that reports to the user does this for every ticket its route covers. Find the user's Jira account with `atlassianUserInfo`. Assign the ticket to them; if someone else is assigned, ask first. Move it to In Progress when its status comes earlier in the workflow, using `transitionJiraIssue`, and never move it backwards. When the route reports back, and again when a watched PR merges or closes, log the active time spent on that ticket as section 5 of [time report](../time-report/SKILL.md) says. Picking up the ticket approves this estimate, so log it without asking again. Log only time not already in a worklog. Without Jira access, say what you could not update and carry on.
 
 ## Start a thread
 
