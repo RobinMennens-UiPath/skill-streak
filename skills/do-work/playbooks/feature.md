@@ -31,7 +31,7 @@ Write plan.md, plan-details.md, proposal.md and diagrams in the [document format
 
 ## Hand off
 
-Use `t3_thread_launch` with a worktree from the recorded base and the orchestrator model. Start [build-plan](../../build-plan/SKILL.md) with the message `/build-plan <absolute plan folder>`. If T3 Code does not interpret the command, send the explicit form to the build thread:
+Use `t3_thread_launch` with a worktree from the recorded base and the build lead model. Start [build-plan](../../build-plan/SKILL.md) with the message `/build-plan <absolute plan folder>`. If T3 Code does not interpret the command, send the explicit form to the build thread:
 
 ```text
 Read <absolute installed path>/build-plan/SKILL.md and follow it.
@@ -40,4 +40,4 @@ Plan folder: <absolute plan folder>
 
 Keep the returned thread ID. The build thread writes its own handed-off entry. On restart, check the launch record for this folder before creating a thread. Reuse an existing build, including one that started before its ID was saved. If the thread is gone, inspect the pushed branches, PRs and remaining worktrees. Recover the build from the first unfinished step and record the replacement thread. Preserve recoverable edits.
 
-Wait with `t3_thread_wait` and `untilDelegatedWorkSettled: true`. Wait again after a timeout. Read the build report with `t3_thread_read`. Address recoverable problems and send the build the information it needs. For a genuine blocker, bring the specific question to the originating thread and relay the answer. Return the draft PR links, heads, checks, real-surface proof, swarm scores and remaining gaps in the originating user thread. Then watch each PR as “Watch the PR” in [open-pr](../../open-pr/SKILL.md) says.
+Wait with `t3_thread_wait` and `untilDelegatedWorkSettled: true`, as rule 9 of [do-work](../SKILL.md) says. Read the build report with `t3_thread_read`. Address recoverable problems and send the build the information it needs. For a genuine blocker, bring the specific question to the originating thread and relay the answer. Return the draft PR links, heads, checks, real-surface proof, swarm scores and remaining gaps in the originating user thread. Then watch each PR as “Watch the PR” in [open-pr](../../open-pr/SKILL.md) says.
