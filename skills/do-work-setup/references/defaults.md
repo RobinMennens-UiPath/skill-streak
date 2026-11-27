@@ -10,9 +10,11 @@ pr reviewer: Fable 5.2, high, never a model that wrote code for the PR
 swarm: the members selected during setup
 swarm effort: high for a plan, medium for code
 researchers: Opus 5.5, medium, at most 3 at a time
+build lead: the implementer model
+provider: chosen per launch by usage, unless the request or preferences pin one
 build mode: threads
-swarm target: 10
-swarm round cap: 8
+swarm target: 9 for a plan, 10 for code
+swarm round cap: 4
 usage floor: 5% left on any limit
 pull requests: draft, few and large, a native stack with gh stack when one builds on another
 ```
@@ -35,7 +37,11 @@ At feature preflight, list the model and actual provider account selected for ea
 | Codex | Use the authenticated Codex app server’s `account/rateLimits/read` request after initialization, or `/status` in the matching CLI session. Check primary and secondary windows in the applicable model buckets and shared limits. |
 | Cursor | Read included usage and limits from the signed-in account’s [usage dashboard](https://cursor.com/dashboard?tab=usage). An already configured CodexBar CLI can also report Cursor usage with `codexbar usage --provider cursor --format json`. |
 
-Use a matching live provider report. Convert percent used to percent remaining; for an allowance shown as amounts, compare remaining and total in the same units and billing period. Spend alone, an auth status or a model listing cannot establish headroom. If an applicable limit is missing or unreadable, identify the account and missing reading and ask for that reading before using it. At or below the floor, finish in-flight work and hold new launches that rely on that limit. Never silently switch providers.
+Use a matching live provider report. Convert percent used to percent remaining; for an allowance shown as amounts, compare remaining and total in the same units and billing period. Spend alone, an auth status or a model listing cannot establish headroom. If an applicable limit is missing or unreadable, identify the account and missing reading and ask for that reading before using it. At or below the floor, finish in-flight work and hold new launches that rely on that limit.
+
+### Choose the provider
+
+Several providers can serve the same model; Cursor serves Fable and Opus too. For each delegate or thread you start, keep the assigned model and pick the provider that has the most left on the limits that launch uses. Name the provider in the launch announcement. A provider named in the request or the preferences is pinned for that role. A provider whose usage you cannot read ranks after any provider with a reading above 40%, and the announcement says its reading is missing. Keep the lead on its provider; to move the lead, start a new thread on the plan folder after the user agrees.
 
 A feature request authorizes planning, implementation, verification and draft PRs. If the user asks to see the plan first, wait for their go-ahead before starting the build. The originating thread returns the results.
 

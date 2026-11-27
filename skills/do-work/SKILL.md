@@ -35,16 +35,17 @@ Follow an explicit `Route:` line. Route `/do-work <slug>` for an existing plan f
 ## Rules of every route
 
 1. Follow [unslop](../unslop/SKILL.md). Give the result first. Number questions. Draw structures as “Draw the diagram” in [open-pr](../open-pr/SKILL.md) describes.
-2. End each phase with one status line giving the phase, result and next phase. Use `send_to_user` for text the user must see before the turn ends.
+2. End each phase with one status line giving the phase, result and next phase. Use `send_to_user` for text the user must see before the turn ends. Send no status message when nothing changed.
 3. Read the repository’s skills and documents first.
 4. A feature request authorizes planning, implementation, verification and opening draft PRs. Keep the originating thread responsible for delivery. Infer routine choices from the request, evidence and repository rules. Honor a request to read or approve the plan before building. Otherwise interrupt only to confirm key requirements, for an explicit stop, a genuine blocker after recovery attempts, or consequential input you cannot infer. For a blocker, give the evidence and ask only for the action or decision that unblocks it. Open PRs as drafts. Merge, approve, mark ready or re-request review only on the user's word for that action. Once a route has opened or updated PRs and reported back in the user's thread, that thread watches each PR and handles feedback as “Watch the PR” in [open-pr](../open-pr/SKILL.md) says. That section also sets which threads you may reply to and resolve.
-5. On “stop” or “pause”, immediately cancel each delegate with `task_cancel`. Send each started thread the following message with `t3_thread_send`, mode `restart`. Wait for each with `t3_thread_wait`, including delegated work. Wait again after a timeout, then report the state.
+5. On “stop” or “pause”, immediately cancel each delegate with `task_cancel`. Send each started thread the following message with `t3_thread_send`, mode `restart`. Wait for each with `t3_thread_wait`, including delegated work, as rule 9 says, then report the state.
 
-   > Stop. Stop every agent that you started, as rule 5 of do-work says, wait for each stopped thread with t3_thread_wait and wait again after a timeout, start nothing, and report the state.
+   > Stop. Stop every agent that you started, as rule 5 of do-work says, wait for each stopped thread with t3_thread_wait and end your turn if the wait returns next, start nothing, and report the state.
 
 6. Use native stacks for dependent PRs. Use `gh stack` to create and restack them when installed. For an authorized merge, use its merge operation if available.
 7. Stop a bug fix that needs a behavior choice or design and present the options. Move a change that needs design to feature and say so. A started thread stops and reports instead.
 8. When a feature, bug or change route picks up a Jira ticket, update the ticket before the work starts. The thread that reports to the user does this for every ticket its route covers. Find the user's Jira account with `atlassianUserInfo`. Assign the ticket to them; if someone else is assigned, ask first. Move it to In Progress when its status comes earlier in the workflow, using `transitionJiraIssue`, and never move it backwards. When the route reports back, and again when a watched PR merges or closes, log the active time spent on that ticket as section 5 of [time report](../time-report/SKILL.md) says. Picking up the ticket approves this estimate, so log it without asking again. Log only time not already in a worklog. Without Jira access, say what you could not update and carry on.
+9. Never poll. An ended turn costs no tokens, and T3 wakes you when the work you wait for moves. When `t3_thread_wait` or `delegate_task` times out and returns `next`, end your turn; T3 wakes you when the thread or delegate settles. Watch a PR with `watch_pull_request` and end the turn. Do not loop `t3_thread_wait`, `task_status` or `t3_thread_read`, and do not write a script that polls. A build lead waits for its PR owner threads the same way.
 
 ## Start a thread
 
